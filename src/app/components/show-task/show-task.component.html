@@ -1,0 +1,36 @@
+<div class="modal" style="display: block;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button 
+                    type="button" 
+                    class="close" 
+                    aria-label="Close" 
+                    (click)="closeTask()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">
+                    {{activeTask.title}}
+                    <span 
+                        [ngClass]="{
+                            'label': true,
+                            'label-success': activeTask.isActive,
+                            'label-info': !activeTask.isActive
+                        }"
+                    >{{activeTask.isActive ? 'открыта' : 'закрыта'}}</span>
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-success">
+                    Выполнить до: {{activeTask.expiration | date: 'dd.MM.yyyy'}}
+                </div>
+                <p>
+                    {{activeTask.descripton}}
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" (click)="closeTask()">Закрыть</button>
+            </div>
+        </div>
+    </div>
+</div>

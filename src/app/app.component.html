@@ -1,0 +1,34 @@
+<div class="col-md-12">
+    <h2>Список задач</h2>
+    <div class="form-group">
+        <button class="btn btn-primary" (click)="toggleShowForm()">Новая задача</button>
+    </div>
+
+    <task-form 
+        *ngIf="showForm"
+        [activeTask]="activeTask"
+        [addTask]="addTask"  
+        [tasks]="tasks"
+        (onCloseForm)="onCloseForm()"
+    ></task-form>
+
+    <edit-form
+        *ngIf="showEdit"
+        [activeTask]="activeTask"
+        [editTask]="editTask"
+        (onCloseEdit)="onCloseEdit()"
+    ></edit-form>
+
+    <show-task 
+        *ngIf="showTask"
+        [activeTask]="activeTask"
+        (onCloseTask)="onCloseTask()"
+    ></show-task>
+
+    <task-list 
+        [tasks]="tasks" 
+        [removeTask]="removeTask"
+        (onEditTask)="onEditTask($event)"
+        (onOpenTask)="onOpenTask($event)"
+    ></task-list>
+</div>
