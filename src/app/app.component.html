@@ -6,7 +6,6 @@
 
     <task-form 
         *ngIf="showForm"
-        [activeTask]="activeTask"
         [addTask]="addTask"  
         [tasks]="tasks"
         (onCloseForm)="onCloseForm()"
@@ -15,7 +14,6 @@
     <edit-form
         *ngIf="showEdit"
         [activeTask]="activeTask"
-        [editTask]="editTask"
         (onCloseEdit)="onCloseEdit()"
     ></edit-form>
 

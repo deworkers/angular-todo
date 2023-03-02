@@ -22,10 +22,6 @@ export class AppComponent {
         })
     }
 
-    editTask(model: Task) {
-        // to do
-    }
-    
     showTask: boolean
     activeTask: Task
     
