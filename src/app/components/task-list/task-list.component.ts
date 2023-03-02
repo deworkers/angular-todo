@@ -10,7 +10,6 @@ import {Task} from './../../models/task'
 })
 export class TaskListComponent { 
     @Input() tasks: Task[]
-    @Input() removeTask: Function
 
     @Output() onOpenTask = new EventEmitter<boolean>();
     openTask(increased:any) {
@@ -20,6 +19,11 @@ export class TaskListComponent {
     @Output() onEditTask = new EventEmitter<boolean>();
     editTask(increased:any) {
         this.onEditTask.emit(increased)
+    }
+
+    @Output() onRemoveTask = new EventEmitter<boolean>();
+    removeTask(increased:any) {
+        this.onRemoveTask.emit(increased)
     }
 
     setDayToDeadline(date: string, isClose: Boolean) : string {

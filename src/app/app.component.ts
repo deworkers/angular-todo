@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {Task} from './models/task'
 import {tasks as data} from './data/tasks'
 
@@ -7,27 +7,26 @@ import {tasks as data} from './data/tasks'
     templateUrl: './app.component.html'
 })
 
-export class AppComponent {
-    constructor() {}
 
-    public tasks:Task[] = data
+export class AppComponent {
+    tasks:Task[] = []
+
+    ngOnInit() {
+        this.tasks = data;
+    }
 
     addTask(model: Task) {
         this.tasks.push(new Task(model))
     }
 
-    removeTask(id: number) {
+    onRemoveTask(increased:any) {
         this.tasks = this.tasks.filter((task)=> {
-            return task.id !== id
+            return task.id !== increased
         })
     }
-
-    showTask: boolean
-    activeTask: Task
     
-    toggleShowTask() {
-        this.showTask = !this.showTask
-    }
+    showTask: boolean = false
+    activeTask: Task
     
     setActiveTask(task: Task) {
         this.activeTask = task
@@ -35,24 +34,20 @@ export class AppComponent {
 
     onOpenTask(increased:any){
         this.setActiveTask(increased)
-        this.toggleShowTask()
+        this.showTask = !this.showTask
     }
 
     onCloseTask() {
-        this.toggleShowTask()
+        this.showTask = !this.showTask
     }
 
-    showForm: boolean
-
-    toggleShowForm() {
-        this.showForm = !this.showForm
-    }
+    showForm: boolean = false
 
     onCloseForm() {
-        this.toggleShowForm()
+        this.showForm = false
     }
 
-    showEdit: boolean
+    showEdit: boolean = false
 
     onEditTask(increased:any) {
         this.setActiveTask(increased)
