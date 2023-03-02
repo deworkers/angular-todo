@@ -12,7 +12,7 @@
     <tbody>
         <tr 
             *ngFor="let task of tasks"
-            [attr.class]="setDayToDeadline(task.expiration)"
+            [attr.class]="setDayToDeadline(task.expiration, task.isClose)"
         >
             <td>
                 <div class="form-check">

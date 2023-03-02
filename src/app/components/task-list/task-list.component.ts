@@ -24,14 +24,15 @@ export class TaskListComponent {
         this.onEditTask.emit(increased)
     }
 
-    setDayToDeadline(date) : string {
-        let days = Math.floor((Date.parse(date) - Date.now()) / (1000 * 60 * 60 * 24))
-        if (days < 0) {
-            return 'table-danger'
-        } else if (days <= 3) {
+    setDayToDeadline(date: string, isClose: boolean) : string {
+        let days = Math.floor((Date.parse(date) - Date.now()) / (1000 * 60 * 60 * 24)) // разность в милисекундах в целые дни
+
+        if (days > 3 || isClose) { // не подсвечиваем закрытые задачи
+            return ''
+        } else if (days >= 0) {
             return 'table-warning'
         } else {
-            return ''
+            return 'table-danger'
         }
     }
 }
