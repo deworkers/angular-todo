@@ -3,7 +3,7 @@ export class Task {
     title: string
     descripton: string
     expiration: string
-    isActive: Boolean
+    isClose: Boolean
 
     constructor(values: Object = {}) {
         Object.assign(this, values);

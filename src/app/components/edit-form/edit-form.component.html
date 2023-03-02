@@ -2,30 +2,59 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" aria-label="Close" (click)="closeForm()"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Новая задача</h4>
+                <h4 class="modal-title">Редактирование задачи {{activeTask.id}}</h4>
+                <button 
+                    type="button" 
+                    class="btn-close" 
+                    aria-label="Close" 
+                    (click)="closeForm()"
+                >
+                </button>
             </div>
             <div class="modal-body">
-                <div class="form-group">
-                    <label>Задача</label>
-                    <input class="form-control" [(ngModel)]="activeTask.title" type="text">
+                <div class="form-check mb-3">
+                    <input 
+                        class="form-check-input"
+                        id="{{activeTask.id}}"
+                        type="checkbox"
+                        [(ngModel)]="activeTask.isClose"
+                    > 
+                    <label
+                        class="form-check-label"
+                        for="{{activeTask.id}}">
+                        {{activeTask.isClose ? 'Закрыта' : "Открыта"}}
+                    </label>
                 </div>
-                <div  class="form-group">
-                    <label>Описание</label>
-                    <textarea class="form-control" 
+                <div class="mb-3">
+                    <label class="form-label">Задача</label>
+                    <input 
+                        class="form-control" 
+                        [(ngModel)]="activeTask.title" 
+                        type="text"
+                    >
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Описание</label>
+                    <textarea 
+                        rows="5"
+                        class="form-control" 
                         [(ngModel)]="activeTask.descripton"
                     ></textarea>
                 </div>
-                <div class="form-group">
-                    <label>Дата выполнения</label>
-                    <input class="form-control" 
+                <div class="mb-3">
+                    <label class="form-label">Дата выполнения</label>
+                    <input 
+                        class="form-control" 
                         type="date"
                         [(ngModel)]="activeTask.expiration"
                     >
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-primary" (click)="editTask()">Создать</button>
+                <button 
+                    class="btn btn-primary" 
+                    (click)="closeForm()"
+                >Закрыть</button>
             </div>
         </div>
     </div>

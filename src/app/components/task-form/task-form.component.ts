@@ -12,17 +12,17 @@ export class TaskFormComponent {
     addNewTask() {
         if (this.task.title) {
             this.task.id = this.tasks.length
-            this.task.isActive = false
+            this.task.isClose = false
             this.addTask(this.task)
     
             this.task = new Task()
-            this.closeForm();
+            this.closeForm()
         }
     }
 
     @Output() onCloseForm = new EventEmitter<boolean>();
     closeForm() {
-        this.onCloseForm.emit();
+        this.onCloseForm.emit()
     }
 
     task = new Task()

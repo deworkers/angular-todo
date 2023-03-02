@@ -9,11 +9,8 @@ export class EditFormComponent {
     @Input() editTask: Function
     @Input() activeTask: Task
 
-    @Output() onCloseEdit = new EventEmitter<boolean>();
+    @Output() onCloseEdit = new EventEmitter<boolean>()
     closeForm() {
-        this.onCloseEdit.emit();
+        this.onCloseEdit.emit()
     }
-
-    
-
 }

@@ -3,7 +3,12 @@ import {Task} from './../../models/task'
       
 @Component({
     selector: 'task-list',
-    templateUrl: './task-list.component.html'
+    templateUrl: './task-list.component.html',
+    styles: [`
+        .strike {
+            text-decoration : line-through
+        }
+    `]
 })
 export class TaskListComponent { 
     @Input() tasks: Task[];
@@ -11,20 +16,20 @@ export class TaskListComponent {
 
     @Output() onOpenTask = new EventEmitter<boolean>();
     openTask(increased:any) {
-        this.onOpenTask.emit(increased);
+        this.onOpenTask.emit(increased)
     }
 
     @Output() onEditTask = new EventEmitter<boolean>();
     editTask(increased:any) {
-        this.onEditTask.emit(increased);
+        this.onEditTask.emit(increased)
     }
 
     setDayToDeadline(date) : string {
         let days = Math.floor((Date.parse(date) - Date.now()) / (1000 * 60 * 60 * 24))
-        if (days <= 0) {
-            return 'danger'
+        if (days < 0) {
+            return 'table-danger'
         } else if (days <= 3) {
-            return 'warning'
+            return 'table-warning'
         } else {
             return ''
         }
