@@ -6,7 +6,6 @@ export class Task {
     isClose: Boolean
 
     constructor(values: Object = {}) {
-        
         Object.assign(this, values);
     } 
 }

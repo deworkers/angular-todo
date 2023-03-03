@@ -1,31 +1,34 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import {Task} from './../../models/task'
 
 @Component({
     selector: 'task-form',
-    templateUrl: './task-form.component.html'
+    templateUrl: './task-form.component.html',
+    styleUrls: ['./task-form.component.css']
 })
 export class TaskFormComponent { 
+    task = new Task()
+    showError: boolean = false
+
     @Input() addTask: Function
     @Input() tasks: Task[]
-
-    addNewTask() {
-        if (this.task.title) {
-            this.task.id = this.tasks.length
-            this.task.isClose = false
-
-            this.addTask(this.task)
-    
-            this.task = new Task()
-            this.closeForm()
-        }
-    }
 
     @Output() onCloseForm = new EventEmitter<boolean>();
     closeForm() {
         this.onCloseForm.emit()
     }
 
-    task = new Task()
-
+    addNewTask(taskForm: NgForm) {
+        if (taskForm.valid) {
+            this.showError = false
+            this.task.id = this.tasks.length
+            this.addTask(this.task)
+    
+            this.task = new Task()
+            this.closeForm()
+        } else {
+            this.showError = true
+        }
+    }
 }

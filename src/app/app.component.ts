@@ -15,8 +15,8 @@ export class AppComponent {
         this.tasks = data;
     }
 
-    addTask(model: Task) {
-        this.tasks.push(new Task(model))
+    addTask(task: Task) {
+        this.tasks.push(task)
     }
 
     onRemoveTask(increased:any) {

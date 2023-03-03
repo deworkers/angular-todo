@@ -1,39 +1,73 @@
 <div class="modal" style="display: block;">
     <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Новая задача</h4>
-                <button 
-                    type="button" 
-                    class="btn-close"
-                    aria-label="Close" 
-                    (click)="closeForm()"
-                ></button>
-            </div>
-            <div class="modal-body">
-                <div class="mb-3">
-                    <label class="form-label">Задача</label>
-                    <input class="form-control" [(ngModel)]="task.title" type="text">
+        <form 
+            #taskForm="ngForm" 
+            (ngSubmit)="addNewTask(taskForm)"
+        >
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Новая задача</h4>
+                    <button 
+                        type="button" 
+                        class="btn-close"
+                        aria-label="Close" 
+                        (click)="closeForm()"
+                    ></button>
                 </div>
-                <div  class="mb-3">
-                    <label class="form-label">Описание</label>
-                    <textarea 
-                        class="form-control"
-                        [(ngModel)]="task.descripton"
-                    ></textarea>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">Задача *</label>
+                        <input 
+                            class="form-control" 
+                            name="title"
+                            [(ngModel)]="task.title" 
+                            type="text" 
+                            #title="ngModel" 
+                            required
+                        >
+                        <div 
+                            class="invalid-feedback" 
+                            *ngIf="showError && (taskForm.controls['title']?.touched || taskForm.controls['title']?.invalid) ">
+                            Введите зоголовок задачи чтобы продолжить
+                        </div>
+                    </div>
+                    <div  class="mb-3">
+                        <label class="form-label">Описание</label>
+                        <textarea 
+                            name="descripton"
+                            class="form-control"
+                            [(ngModel)]="task.descripton"
+                        ></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Дата выполнения *</label>
+                        <input 
+                            name="expiration"
+                            class="form-control" 
+                            type="date"
+                            [(ngModel)]="task.expiration"
+                            #expiration="ngModel" 
+                            required
+                        >
+                        <div 
+                            class="invalid-feedback" 
+                            *ngIf="showError && (taskForm.controls['expiration']?.touched || taskForm.controls['expiration']?.invalid) ">
+                            Выберите дату чтобы продолжить
+                        </div>
+                    </div>
+                    <div>
+                        * - обязательно для заполнения
+                    </div>
                 </div>
-                <div class="mb-3">
-                    <label class="form-label">Дата выполнения</label>
-                    <input 
-                        class="form-control" 
-                        type="date"
-                        [(ngModel)]="task.expiration"
+                <div class="modal-footer">
+                    <button
+                        type="submit"
+                        class="btn btn-primary" 
                     >
+                        Создать
+                    </button>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button class="btn btn-primary" (click)="addNewTask()">Создать</button>
-            </div>
-        </div>
+        </form> 
     </div>
 </div>
