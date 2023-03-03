@@ -14,8 +14,7 @@ export class TaskFormComponent {
             this.task.id = this.tasks.length
             this.task.isClose = false
 
-            this.tasks.push(this.task);
-            //this.addTask(this.task)
+            this.addTask(this.task)
     
             this.task = new Task()
             this.closeForm()
